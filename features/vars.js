@@ -5,8 +5,8 @@ export const varsSlice = createSlice({
     initialState: {
         users: [
             {
-                userName: "DOG",
-                userColor: "aqua",
+                userName: "CAR",
+                userColor: "lime",
                 position: 0,
                 myStreets: [],
                 amountOfMoney: 200,
@@ -21,8 +21,8 @@ export const varsSlice = createSlice({
                 counterRollDice: 0,
             },
             {
-                userName: "CAR",
-                userColor: "lime",
+                userName: "DOG",
+                userColor: "aqua",
                 position: 0,
                 myStreets: [],
                 amountOfMoney: 200,
@@ -77,6 +77,18 @@ export const varsSlice = createSlice({
         },
         saveUsers: (state, action) => {
             state.users = action.payload
+            state.users.sort(function (a, b) {
+                const nameA = a.userName.toUpperCase();
+                const nameB = b.userName.toUpperCase();
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+
+                return 0;
+            })
         },
         updatePosition: (state, action) => {
             state.currentUser.position = action.payload
